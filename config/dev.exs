@@ -2,10 +2,11 @@ use Mix.Config
 
 # Configure your database
 config :timesup, Timesup.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "timesup_dev",
+  password: "timesup_dev",
   database: "timesup_dev",
   hostname: "localhost",
+  port: 54445,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

@@ -1,0 +1,13 @@
+version: '3'
+services:
+  database:
+    image: postgres:alpine
+    restart: always
+    volumes:
+      - ./docker/postgresql/data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: timesup_dev
+      POSTGRES_PASSWORD: timesup_dev
+    ports:
+      - "54445:5432"
+      

@@ -238,8 +238,9 @@ defmodule Timesup.Game do
   def skip_player(%Game{} = game), do: game
 
   defp next_round(:round_1), do: :round_2
-  defp next_round(:round_2), do: :round_3
-  defp next_round(:round_3), do: nil
+  defp next_round(:round_2), do: nil
+  # defp next_round(:round_2), do: :round_3
+  # defp next_round(:round_3), do: nil
 
   def start_round(%Game{} = game) do
     %{game | show_round_intro: false}
