@@ -2,7 +2,7 @@
 # from environment variables. You can also hardcode secrets,
 # although such is generally not recommended and you have to
 # remember to add this file to your .gitignore.
-import Config
+use Mix.Config
 
 database_url =
   System.get_env("DATABASE_URL") ||
@@ -19,7 +19,7 @@ config :timesup, Timesup.Repo,
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
     raise """
-    environment variable SECRET_KEY_BASE is missing.
+    Environment variable SECRET_KEY_BASE is missing.
     You can generate one by calling: mix phx.gen.secret
     """
 

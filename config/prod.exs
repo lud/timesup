@@ -28,3 +28,5 @@ config :sentry,
     env: "production"
   },
   included_environments: [:prod]
+
+import_config "prod.secret.exs"
