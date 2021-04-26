@@ -2,6 +2,10 @@ use Mix.Config
 
 # Configure your database
 config :timesup, Timesup.Repo,
+  # username: "timesup_dev",
+  # password: "timesup_dev",
+  # database: "timesup_dev",
+  # hostname: "localhost",
   username: "postgres",
   password: "postgres",
   database: "timesup_test",

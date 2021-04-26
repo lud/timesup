@@ -1,4 +1,5 @@
 defmodule Timesup.Release do
+  require Logger
   @app :timesup
 
   def migrate do
@@ -14,7 +15,22 @@ defmodule Timesup.Release do
     {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :down, to: version))
   end
 
-  defp repos do
+  def ping() do
+    for repo <- repos() do
+      Logger.info("ping repo #{inspect(repo)}")
+
+      case repo.query("SELECT 1") do
+        {:ok, _} ->
+          :ok
+
+        _ ->
+          Logger.warn("awaiting repo #{inspect(repo)}")
+          Process.sleep(1000)
+      end
+    end
+  end
+
+  def repos do
     Application.load(@app)
     Application.fetch_env!(@app, :ecto_repos)
   end

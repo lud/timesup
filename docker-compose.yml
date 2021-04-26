@@ -1,10 +1,22 @@
 version: '3'
 services:
-  database:
+
+  app:
+    build: .
+    environment:
+      DATABASE_URL: ecto://timesup_dev:timesup_dev@db/timesup_dev
+      SECRET_KEY_BASE: aaa---
+      SIGNING_SALT: aaa----
+    ports:
+      - "4000:4000"
+    command: "sh -c './bin/timesup start; ./bin/timesup rpc Timesup.Release.ping; ./bin/timesup rpc Timesup.Release.migrate'"
+  
+  
+  db:
     image: postgres:alpine
     restart: always
-    volumes:
-      - ./docker/postgresql/data:/var/lib/postgresql/data/
+    # volumes:
+      # - ./docker/postgresql/data:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: timesup_dev
       POSTGRES_PASSWORD: timesup_dev
