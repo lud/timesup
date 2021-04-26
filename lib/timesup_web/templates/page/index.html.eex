@@ -4,7 +4,7 @@
       <h1>
         Time's Up <span class="online">online</span>
       </h1>
-      <p>Pour pouvoir y jouer même quand on est confiné.</p>
+      <p>Pour pouvoir y jouer même quand on est confiné.e.s !</p>
     </div>
     <div class="links">
       <%= form_for @conn, Routes.page_path(@conn, :create_game), [class: "new-game-form"], fn _f -> %>
