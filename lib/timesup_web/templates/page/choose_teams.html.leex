@@ -10,7 +10,7 @@
   <%= for {_, team_index} <- Enum.with_index(@game.teams) do %>
     <div class="team">
       <div class="team-header">
-        <h2>Équipe <%= team_index + 1 %></h2>
+        <h2><%= team_name(team_index) %></h2>
         <button phx-click="choose_team" phx-value-team="<%= team_index %>" class="secondary">
           Rejoindre
         </button>

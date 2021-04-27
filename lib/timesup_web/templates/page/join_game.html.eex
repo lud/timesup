@@ -1,7 +1,8 @@
 <div class="centered">
   <%= form_for @changeset, Routes.page_path(@conn, :join_game, @id), [as: :player, class: "join-game-form"], fn f -> %>
     <div class="input-group">
-      <%= label f, :name, "Votre nom" %>
+      <%= label f, :name, "Votre prénom" %>
+      <p>Renseignez votre vrai prénom afin que votre équipe puisse vous reconnaître</p>
       <%= text_input f, :name, value: Plug.Conn.get_session(@conn, :current_user), required: true %>
       <%= error_tag f, :name %>
     </div>

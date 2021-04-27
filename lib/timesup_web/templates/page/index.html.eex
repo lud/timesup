@@ -1,10 +1,10 @@
 <div class="centered">
   <div class="home">
     <div class="home-header">
-      <h1>
-        Time's Up <span class="online">online</span>
+      <h1 style="text-align:center;">
+        Avoir le mot <br>de l'eFEN
       </h1>
-      <p>Pour pouvoir y jouer même quand on est confiné.e.s.</p>
+      <p style="text-align:center;">Un time's up revisité pour réviser les mots de nos métiers !</p>
     </div>
     <div class="links">
       <%= form_for @conn, Routes.page_path(@conn, :create_game), [class: "new-game-form"], fn _f -> %>

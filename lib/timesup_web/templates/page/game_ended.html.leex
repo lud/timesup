@@ -3,9 +3,9 @@
   <%= for {team, index} <- Enum.with_index(game_summary(@game)) do %>
     <div class="team-summary">
       <%= if index == 0 do %>
-        <h1>Bravo à l'<span class="team">équipe&nbsp<%= team.number %></span>&nbsp!</h1>
+        <h1>Bravo à l'<span class="team">équipe&nbsp<%= team_name_alt(team.index) %></span>&nbsp!</h1>
       <% else %>
-        <h2>Et l'<span class="team">équipe&nbsp<%= team.number %></span> <span class="text-sm">(bravo aussi quand même)</span></h2>
+        <h2>Et l'<span class="team">équipe&nbsp<%= team_name_alt(team.index) %></span> <span class="text-sm">(bravo aussi quand même)</span></h2>
       <% end %>
       <div>
         <%= render(
@@ -15,20 +15,33 @@
         ) %>
       </div>
       <div class="points">
-        <div><%= team.points[:round_1] %> + <%= team.points[:round_2] %> + <%= team.points[:round_3] %> =</div>
+        <div><%= team.points[:round_1] %> + <%= team.points[:round_2] %> =</div>
         <div class="total"><%= team.total %></div>
         <div>points</div>
       </div>
     </div>
   <% end %>
   </div>
+
+  <div class="summary">
+    <a class="btn" href="<%= Routes.page_path(TimesupWeb.Endpoint, :index) %>">
+      Retour à l'accueil
+    </a>
+  </div>
+
   <p>
+    Ce jeu a été développé par Kim Laï Trinh.
+
+    <br>
+
+    Il a été modifié par Anaïs et Ludovic pour une séance ludopédagogique
+    destinée aux M2 eFEN.
+
+    <br>
+
     Si vous avez trouvé un bug ou que vous avez des idées
-    d'améliorations, vous pouvez me contacter <a href="mailto:hello@kimlaitrinh.me">par email</a>
+    d'améliorations, vous pouvez le contacter <a href="mailto:hello@kimlaitrinh.me">par email</a>
     ou sur <a href="https://twitter.com/KimLaiTrinh">Twitter</a>. Le code est disponible sur
     <a href="https://github.com/kimlai/timesup">Github</a>.
   <p>
-  <a class="btn" href="<%= Routes.page_path(TimesupWeb.Endpoint, :index) %>">
-    Retour à l'accueil
-  </a>
 </section>

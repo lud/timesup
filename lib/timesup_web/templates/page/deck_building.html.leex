@@ -27,18 +27,35 @@
         </div>
       </div>
 
-      <h2>Les cartes</h2>
+
+      <%= if Timesup.Game.all_players_ready?(@game) do %>
+        <%= if Timesup.Game.number_of_cards(@game) > 0 do %>
+          <div class="ready">
+            <div><b>Tout le monde est prêt</b></div>
+            <button phx-click="start_choosing_teams">Choisir les équipes</button>
+          </div>
+        <% else %>
+          <div class="ready">
+            <div><b>Le jeu doit contenir au moins une carte</b></div>
+            <button phx-click="toggle_player_ready">Ajouter des cartes</button>
+          </div>
+        <% end %>
+      <% else %>
+        <%= if Timesup.Game.player_ready?(@game, @current_user) do %>
+          <div class="ready">
+            <div><b>En attente des autres joueurs</b></div>
+            <div><button phx-click="toggle_player_ready">Ajouter des cartes</button></div>
+          </div>
+        <% else %>
+          <div><button phx-click="toggle_player_ready">Je suis prêt·e</button></div>
+        <% end %>
+      <% end %>
+
+      <h2 style="margin-top:300px;">Les cartes</h2>
       <div class="stack" style="--space: var(--s-1)">
         <p>
-          Vous devez constituer une pile de cartes de noms de personnalités (plus ou moins) connues. Vous
-          décidez entre vous du nombre de cartes à écrire.
+          N'ajouter pas de cartes ! Pour cette partie spéciale eFEN, c'est Anaïs, le maître du jeu, qui va ajouter les mots à jouer.
         </p>
-        <div class="tip">
-          <p>
-            il est préférable que tout le monde écrive le même nombre de cartes, sauf
-            pour <a href="/odd_number_of_players">un nombre impair de joueur·euses</a>.
-          </p>
-        </div>
       </div>
       <div>
         <div>Nombre total de cartes : <b><%= Timesup.Game.number_of_cards(@game) %></b></div>
@@ -69,28 +86,6 @@
             </li>
           <% end %>
         </ul>
-      <% end %>
-      <%= if Timesup.Game.all_players_ready?(@game) do %>
-        <%= if Timesup.Game.number_of_cards(@game) > 0 do %>
-          <div class="ready">
-            <div><b>Tout le monde est prêt</b></div>
-            <button phx-click="start_choosing_teams">Choisir les équipes</button>
-          </div>
-        <% else %>
-          <div class="ready">
-            <div><b>Le jeu doit contenir au moins une carte</b></div>
-            <button phx-click="toggle_player_ready">Ajouter des cartes</button>
-          </div>
-        <% end %>
-      <% else %>
-        <%= if Timesup.Game.player_ready?(@game, @current_user) do %>
-          <div class="ready">
-            <div><b>En attente des autres joueurs</b></div>
-            <div><button phx-click="toggle_player_ready">Ajouter des cartes</button></div>
-          </div>
-        <% else %>
-          <div><button phx-click="toggle_player_ready">Je suis prêt·e</button></div>
-        <% end %>
       <% end %>
     </div>
   </section>

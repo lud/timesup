@@ -1,7 +1,7 @@
 <section class="game-started">
   <aside>
     <%= for {_, team_index} <- Enum.with_index(@game.teams) do %>
-      <b>Équipe <%= team_index + 1 %></b>
+      <b><%= team_name(team_index) %></b>
       <div>
         <%= render(
           TimesupWeb.PageView,
@@ -10,7 +10,7 @@
         ) %>
       </div>
       <ul>
-        <%= for {round, i} <- Enum.with_index([:round_1, :round_2, :round_3]) do %>
+        <%= for {round, i} <- Enum.with_index([:round_1, :round_2]) do %>
           <li>Manche <%= i + 1 %>: <%= Timesup.Game.team_points(@game, team_index)[round] %> points</li>
         <% end %>
       </ul>
