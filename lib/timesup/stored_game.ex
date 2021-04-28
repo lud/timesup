@@ -79,8 +79,8 @@ defmodule Timesup.StoredGame do
      }}
   end
 
-  # PostgreSQL does not support multidimmensional arrays where the inner arrays have different lengths
-  # so we need to store them as jsonb
+  # PostgreSQL does not support multidimmensional arrays where the inner arrays
+  # have different lengths so we need to store them as jsonb
   defp list_to_map(list) do
     list
     |> Enum.with_index()
